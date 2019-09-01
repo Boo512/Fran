@@ -10,9 +10,15 @@ positional arguments:
 
 optional arguments:
   -h, --help                show this help message and exit
+  
   -j JUMP, --jump JUMP      count every j character
+  
   -k KEEP, --keep KEEP      print only the first k results
+  
   -s START, --start START   start at a defined place
+  
   -e END, --end END         stop at a defined place
+  
   --short                   disable bars
+  
 
