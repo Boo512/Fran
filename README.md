@@ -18,7 +18,6 @@ optional arguments:
   -s START, --start START   start at a defined place
   
   -e END, --end END         stop at a defined place
-  
-  --short                   disable bars
+
   
 
