@@ -32,7 +32,6 @@ parser.add_argument("-j", "--jump", help="count every j character", type=int)
 parser.add_argument("-k", "--keep", help="print only the first k results", type=int)
 parser.add_argument("-s", "--start", help="start at a defined place", type=int)
 parser.add_argument("-e", "--end", help="stop at a defined place", type=int)
-parser.add_argument("--short", help="disable bars", action="store_true")
 args = parser.parse_args()
 	
 if args.jump == None:
@@ -57,7 +56,7 @@ if args.end == None:
 else:
 	stop = args.end
 
-for i in range(start, stop-j, j):
+for i in range(start, stop-j*args.n, j):
 	chain = create_chain(text[i:], args.n, j)
 			
 	if chain in dictionnary:
@@ -72,9 +71,14 @@ if args.keep == None:
 else:
 	m = args.keep
 
-for j in range(m):
-	if args.short:
-		l = ""
-	else:
-		l = int(round(float(sorted_dict[j][1])/sorted_dict[0][1]*100))*"|"
-	print(sorted_dict[j][0]+" : "+str(sorted_dict[j][1])+(7-len(str(sorted_dict[j][1])))*" "+l)
+print("n = "+str(len(sorted_dict)))
+print()
+	
+if args.n == 1:
+	for j in range(m):
+		percentage = round(float(sorted_dict[j][1])/len(text)*100)
+		print(sorted_dict[j][0]+" : "+str(sorted_dict[j][1])+"  ("+str(percentage)+"%)")	
+else:
+	for j in range(m):
+		print(sorted_dict[j][0]+" : "+str(sorted_dict[j][1]))
+		
