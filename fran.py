@@ -57,7 +57,7 @@ if args.end == None:
 else:
 	stop = args.end
 
-for i in range(start, stop, j):
+for i in range(start, stop-j, j):
 	chain = create_chain(text[i:], args.n, j)
 			
 	if chain in dictionnary:
