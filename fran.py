@@ -11,11 +11,13 @@ def add_lines(tab):
 
 	return chain
 	
-def rm_spaces(text):
+def text_format(text): #removes non letter characters and capitalizes letters
 	text2 = ""
 	for i in text:
-		if i != " ":
+		if i in "ABCDEFGHIJKLMNOPQRSTUVWXYZ":
 			text2 += i
+		elif i in "abcdefghijklmnopqrstuvwxyz":
+			text2 += i.upper()
 	return text2
 
 def create_chain(line, n, j):
@@ -49,7 +51,7 @@ f = open(args.filename, "r")
 dictionnary = {}
 
 text = add_lines(f.readlines())
-text = rm_spaces(text)
+text = text_format(text)
 
 if args.end == None:
 	stop = len(text) - args.n +1
@@ -67,18 +69,21 @@ for i in range(start, stop-j*args.n, j):
 sorted_dict = sorted(dictionnary.items(), key=operator.itemgetter(1), reverse=True)
 		
 if args.keep == None:
-	m = len(sorted_dict)
+	k = len(sorted_dict)
 else:
-	m = args.keep
-
-print("n = "+str(len(sorted_dict)))
-print()
+	k = args.keep
 	
-if args.n == 1:
-	for j in range(m):
-		percentage = round(float(sorted_dict[j][1])/len(text)*100)
-		print(sorted_dict[j][0]+" : "+str(sorted_dict[j][1])+"  ("+str(percentage)+"%)")	
-else:
-	for j in range(m):
-		print(sorted_dict[j][0]+" : "+str(sorted_dict[j][1]))
-		
+len_dict = len(sorted_dict)
+	
+print("n = "+str(len_dict))
+print()
+
+total = 0
+
+for i in sorted_dict:
+	total += i[1]
+
+for j in range(k):
+	percentage = round(float(sorted_dict[j][1])/total*100, 2)
+	print(sorted_dict[j][0]+" : "+str(sorted_dict[j][1])+"  ("+str(percentage)+"%)")	
+
