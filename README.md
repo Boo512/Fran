@@ -2,7 +2,7 @@
 
 Yeah so huh... I needed a simple tool for frequency analysis in a cryptography CTF so i made it as a command line python tool
 
-usage: fran.py [-h] [-j JUMP] [-k KEEP] [-s START] [-e END] [--short] filename {1,2,3}
+usage: fran.py [-h] [-j JUMP] [-k KEEP] [-s START] [-e END] filename {1,2,3}
 
 positional arguments:
   filename                  name of the file to analize
